@@ -2,6 +2,7 @@ package sorting;
 
 import java.util.Arrays;
 import javax.swing.JPanel;
+import sorting.algorithms.ISortAlgorithm;
 
 /**
  * Class with the array including the data for the sorting algorithms to use

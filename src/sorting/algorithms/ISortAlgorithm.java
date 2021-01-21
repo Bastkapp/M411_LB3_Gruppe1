@@ -1,4 +1,6 @@
-package sorting;
+package sorting.algorithms;
+
+import sorting.SortArray;
 
 /**
  * Base interface for the sort algorithms

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import javax.swing.SwingWorker;
-import sorting.ISortAlgorithm;
+import sorting.algorithms.ISortAlgorithm;
 import sorting.MainApp;
 import sorting.SortArray;
 

@@ -1,6 +1,6 @@
 package sorting.algorithms.bubblesort;
 
-import sorting.ISortAlgorithm;
+import sorting.algorithms.ISortAlgorithm;
 import sorting.SortArray;
 
 /**

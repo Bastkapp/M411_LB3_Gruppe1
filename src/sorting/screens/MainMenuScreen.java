@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
-import sorting.ISortAlgorithm;
+import sorting.algorithms.ISortAlgorithm;
 import sorting.MainApp;
 import sorting.algorithms.bubblesort.BubbleSort;
 
