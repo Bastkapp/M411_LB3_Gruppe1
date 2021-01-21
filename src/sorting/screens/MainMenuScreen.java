@@ -1,7 +1,6 @@
 package sorting.screens;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import sorting.ISortAlgorithm;
 import sorting.MainApp;
-import sorting.algorithms.BubbleSort;
+import sorting.algorithms.bubblesort.BubbleSort;
 
 
 /**
@@ -31,7 +30,7 @@ public final class MainMenuScreen extends Screen {
 
   private void addCheckBox(ISortAlgorithm algorithm, JPanel panel) {
     JCheckBox box = new JCheckBox("", true);
-    box.setAlignmentX(Component.LEFT_ALIGNMENT);
+    box.setAlignmentX(LEFT_ALIGNMENT);
     box.setBackground(BACKGROUND_COLOUR);
     box.setForeground(Color.WHITE);
     checkBoxes.add(new AlgorithmCheckBox(algorithm, box));
@@ -55,7 +54,7 @@ public final class MainMenuScreen extends Screen {
     outerContainer.setBackground(BACKGROUND_COLOUR);
     outerContainer.setLayout(new BoxLayout(outerContainer, BoxLayout.LINE_AXIS));
 
-    sortAlgorithmContainer.setAlignmentX(Component.CENTER_ALIGNMENT);
+    sortAlgorithmContainer.setAlignmentX(CENTER_ALIGNMENT);
 
     addCheckBox(new BubbleSort(), sortAlgorithmContainer);
 
@@ -73,7 +72,7 @@ public final class MainMenuScreen extends Screen {
               app
           ));
     });
-    startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    startButton.setAlignmentX(CENTER_ALIGNMENT);
 
     outerContainer.add(optionsContainer);
     outerContainer.add(Box.createRigidArea(new Dimension(5, 0)));

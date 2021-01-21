@@ -1,4 +1,4 @@
-package sorting.algorithms;
+package sorting.algorithms.bubblesort;
 
 import sorting.ISortAlgorithm;
 import sorting.SortArray;

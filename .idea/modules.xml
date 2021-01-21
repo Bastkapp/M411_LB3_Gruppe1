@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CoordinationAndIntegration/CoordinationAndIntegration.iml" filepath="$PROJECT_DIR$/CoordinationAndIntegration/CoordinationAndIntegration.iml" />
       <module fileurl="file://$PROJECT_DIR$/M411_LB3_Gruppe1.iml" filepath="$PROJECT_DIR$/M411_LB3_Gruppe1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/P3/Marko - Selectionsort.iml" filepath="$PROJECT_DIR$/P3/Marko - Selectionsort.iml" />
-      <module fileurl="file://$PROJECT_DIR$/P1/P1.iml" filepath="$PROJECT_DIR$/P1/P1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/P2/P2.iml" filepath="$PROJECT_DIR$/P2/P2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/P4/P4.iml" filepath="$PROJECT_DIR$/P4/P4.iml" />
     </modules>
   </component>
 </project>

@@ -1,9 +1,14 @@
+package sorting.algorithms.selectionsort;
+
+import sorting.ISortAlgorithm;
+import sorting.SortArray;
+
 /**
  * @Author: Marko Micanovic
  * @Version: 1.0
  */
 
-public class Selectionsort implements ISortAlgorithm{
+public class Selectionsort implements ISortAlgorithm {
 
     public static void main(String[] args) {
         int[] list = {4, 9, 2, 5, 1};
@@ -52,7 +57,7 @@ public class Selectionsort implements ISortAlgorithm{
     }
 
     @Override
-    public int getDuration() {
+    public double getDuration() {
         return 0;
     }
 
