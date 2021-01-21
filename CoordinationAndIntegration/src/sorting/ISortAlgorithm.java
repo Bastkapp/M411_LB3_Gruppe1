@@ -1,3 +1,5 @@
+package sorting;
+
 /**
  * Base interface for the sort algorithms
  *
@@ -9,7 +11,7 @@ public interface ISortAlgorithm {
 
   public void runSort(SortArray array);
 
-  public int getDuration();
+  public double getDuration();
 
   public int getAmountOfChanges();
 }

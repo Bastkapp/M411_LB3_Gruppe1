@@ -1,4 +1,7 @@
+package sorting;
+
 import java.util.Arrays;
+import javax.swing.JPanel;
 
 /**
  * Class with the array including the data for the sorting algorithms to use
@@ -6,9 +9,11 @@ import java.util.Arrays;
  *
  * @author Bastian Kappeler
  */
-public class SortArray {
+public class SortArray extends JPanel {
 
   private final int[] array;
+  private String algorithmName = "";
+  private ISortAlgorithm algorithm;
 
   /**
    * Creates a fresh copy of the array of unsorted data
@@ -58,7 +63,7 @@ public class SortArray {
   /**
    * Sets a value to a specified position in the array
    * This method does not get used often, you mostly just
-   * swap two values with the {@code SortArray.swap}
+   * swap two values with the {@code sorting.SortArray.swap}
    *
    * @param index the position where the value has to be set
    * @param value the value that has to be set
@@ -74,5 +79,14 @@ public class SortArray {
    */
   public int[] getArray() {
     return array;
+  }
+
+  @Override
+  public void setName(String algorithmName) {
+    this.algorithmName = algorithmName;
+  }
+
+  public void setAlgorithm(ISortAlgorithm algorithm) {
+    this.algorithm = algorithm;
   }
 }
