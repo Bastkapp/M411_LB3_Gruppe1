@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.SwingWorker;
 import sorting.algorithms.ISortAlgorithm;
 import sorting.MainApp;
@@ -38,11 +39,12 @@ public final class SortingVisualiserScreen extends Screen {
     String[] lines = null;
     try {
       // File path from Repository Root
-      lines = Files.readAllLines(new File("CoordinationAndIntegration\\src\\sorting\\data\\10Digits.dat").toPath()).toArray(new String[0]);
+      lines = Files.readAllLines(new File("src\\sorting\\data\\10Digits.dat").toPath()).toArray(new String[0]);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
+    assert lines != null;
     int[] data = new int[lines.length];
 
     for (int i = 0; i < lines.length; i++) {
@@ -79,10 +81,14 @@ public final class SortingVisualiserScreen extends Screen {
           sortArray.setName(algorithm.getName());
           sortArray.setAlgorithm(algorithm);
 
+          System.out.println(Arrays.toString(sortArray.getArray()));
+
           algorithm.runSort(sortArray);
           System.out.println("Algorithm: " + algorithm.getName());
           System.out.println("Time: " + algorithm.getDuration());
           System.out.println("Changes: " + algorithm.getAmountOfChanges());
+
+          System.out.println(Arrays.toString(sortArray.getArray()));
 
           longSleep();
         }
