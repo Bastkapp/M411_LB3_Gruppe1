@@ -11,8 +11,9 @@ import sorting.SortArray;
 public class BubbleSort implements ISortAlgorithm {
 
   private double duration;
-  private int changes = 0;
+  private int comparisons = 0;
   private long memory = 0;
+  private long loopRun = 0;
 
   /**
    * This method implements the bubble sort algorithm
@@ -30,11 +31,13 @@ public class BubbleSort implements ISortAlgorithm {
     int len = array.arraySize();
     for (int i = 0; i < len - 1; i++) {
       for (int j = 0; j < len - i - 1; j++) {
+        comparisons++;
         if (array.getValue(j) > array.getValue(j + 1)) {
           array.swap(j, j + 1);
-          changes++;
         }
+        loopRun++;
       }
+      loopRun++;
     }
 
     double endTime = System.currentTimeMillis();
@@ -51,13 +54,18 @@ public class BubbleSort implements ISortAlgorithm {
   }
 
   @Override
-  public int getAmountOfChanges() {
-    return changes;
+  public int getAmountOfComparisons() {
+    return comparisons;
   }
 
   @Override
   public long getMemoryUsage() {
     return memory;
+  }
+
+  @Override
+  public long getLoopRuns() {
+    return loopRun;
   }
 
   @Override
