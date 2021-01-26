@@ -2,19 +2,16 @@ package sorting;
 
 import java.util.Arrays;
 import javax.swing.JPanel;
-import sorting.algorithms.ISortAlgorithm;
 
 /**
- * Class with the array including the data for the sorting algorithms to use
- * Contains methods for the sorting algorithms to work with
+ * Class with the array including the data for the sorting algorithms to use Contains methods for
+ * the sorting algorithms to work with
  *
  * @author Bastian Kappeler
  */
-public class SortArray extends JPanel {
+public class SortArray {
 
   private final int[] array;
-  private String algorithmName = "";
-  private ISortAlgorithm algorithm;
 
   /**
    * Creates a fresh copy of the array of unsorted data
@@ -35,8 +32,7 @@ public class SortArray extends JPanel {
   }
 
   /**
-   * Gets the value form the specified position
-   * out of the array with the data
+   * Gets the value form the specified position out of the array with the data
    *
    * @param index position of the value you want to get
    * @return the value at the specified position
@@ -62,32 +58,13 @@ public class SortArray extends JPanel {
   }
 
   /**
-   * Sets a value to a specified position in the array
-   * This method does not get used often, you mostly just
-   * swap two values with the {@code sorting.SortArray.swap}
+   * Sets a value to a specified position in the array This method does not get used often, you
+   * mostly just swap two values with the {@code sorting.SortArray.swap}
    *
    * @param index the position where the value has to be set
    * @param value the value that has to be set
    */
   public void setValue(int index, int value) {
     array[index] = value;
-  }
-
-  /**
-   * Returns the array
-   *
-   * @return array of data
-   */
-  public int[] getArray() {
-    return array;
-  }
-
-  @Override
-  public void setName(String algorithmName) {
-    this.algorithmName = algorithmName;
-  }
-
-  public void setAlgorithm(ISortAlgorithm algorithm) {
-    this.algorithm = algorithm;
   }
 }

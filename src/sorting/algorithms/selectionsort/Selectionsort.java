@@ -6,10 +6,25 @@ import sorting.SortArray;
 /**
  * @Author: Marko Micanovic
  * @Version: 1.0
+ *
+ * Hier habe ich den SelectionSort übernommen, welchen wir im Moodle am 14.01 behandelt haben.
+ * Der Code wurde einfach so angepasst, dass es noch die Variablen für Zeit, Speicherverbrauch und Anzahl Durchläufe hat.
+ *
+ * Ablauf:
+ * Der Algorithmus funktioniert so, dass er die erste Zahl als lowestNumber festlegt. Die Variable currentNumber geht jede
+ * Position im array durch und prüft, ob lowestNumber < currentNumber übereinstimmt. Falls das aber nicht übereinstimmt, wird
+ * lowestNumber das array gesetzt, bei welchem der Vergleich nicht übereingestimmt hat. Die Anzahl Vergleiche und Anzahl
+ * durchläufe wird hier hochgezählt. Wenn sich lowestNumber dann nicht mehr ändert und currentNumber die ganze Liste durch-
+ * gegangen ist, dann wird am schluss der Wert von der ersten Position mit dem kleinsten Wert vertauscht und die Länge des
+ * arrays verkürzt sich somit um 1 Eintrag, sodass die sortierten Werte nicht mehrmals überprüft werden.
+ *
  */
 
 public class Selectionsort implements ISortAlgorithm {
-    private int swaps = 0;
+    private int amountOfComparisons = 0;
+    private long memory = 0;
+    private long duration = 0;
+    private long loopRuns = 0;
 
 
     @Override
@@ -17,43 +32,51 @@ public class Selectionsort implements ISortAlgorithm {
         return "SelectionSort";
     }
 
-    /**
-     * Hier habe ich den SelectionSort übernommen, welchen wir im Moodle am 14.01 behandelt haben.
-     * Der Code wurde einfach so angepasst, dass es noch die Variablen für Zeit, Swaps und Anzahl Durchläufe hat.
-     */
+
 
     @Override
     public void runSort(SortArray array) {
-        int minValue, minIndex;
-
+        long timeBefore = System.nanoTime();
+        int lowestNumber, currentNumber;
+        Runtime rt = Runtime.getRuntime();
         for (int i = 0; i < array.arraySize(); i++) {
-            minValue = array.getValue(i);
-            minIndex = i;
+            lowestNumber = array.getValue(i);
+            currentNumber = i;
             for (int j = i; j < array.arraySize(); j++) {
-                if (array.getValue(j) < minValue) {
-                    minValue = array.getValue(j);
-                    minIndex = j;
+                if (array.getValue(j) < lowestNumber) {
+                    lowestNumber = array.getValue(j);
+                    currentNumber = j;
+                    this.amountOfComparisons++;
+                    this.loopRuns++;
                 }
             }
-            if (minValue < array.getValue(i)) {
-                array.swap(array.getValue(i), minIndex);
-                swaps++;
+            if (lowestNumber < array.getValue(i)) {
+                array.swap(i, currentNumber);
             }
         }
-
-        for (int k = 0;  k < array.arraySize() -1; k++) {
-            System.out.println(array.getValue(k));
-        }
+        this.memory = rt.totalMemory() - rt.freeMemory();
+        long timeAfter = System.nanoTime();
+        this.duration = timeAfter - timeBefore;
     }
 
     @Override
     public double getDuration() {
-        return 0;
+        return duration;
     }
 
     @Override
-    public int getAmountOfChanges() {
-        return swaps;
+    public int getAmountOfComparisons() {
+        return amountOfComparisons;
+    }
+
+    @Override
+    public long getMemoryUsage() {
+        return memory;
+    }
+
+    @Override
+    public long getLoopRuns() {
+        return loopRuns;
     }
 }
 
