@@ -18,6 +18,16 @@ import sorting.SortArray;
  * gegangen ist, dann wird am schluss der Wert von der ersten Position mit dem kleinsten Wert vertauscht und die Länge des
  * arrays verkürzt sich somit um 1 Eintrag, sodass die sortierten Werte nicht mehrmals überprüft werden.
  *
+ *
+ * Best-, Worst- und Average-Case:
+ * Der Selectionsort geht immer die ganze Liste durch, weshalb Best-, Worst- und Average-Case auch alle den gleichen Wert
+ * haben. Der Sort geht immer eine fixe Anzahl vergleiche durch, weshalb sich die Fälle von der Zeit her nicht unterscheiden.
+ *
+ *
+ * Stabilität:
+ * Der Algorithmus ist nicht stabil, weil die Werte während dem durchlaufen immer wieder vertauscht werden und sich deshalb
+ * die Reihenfolge von gleichen Werten ändern kann.
+ *
  */
 
 public class Selectionsort implements ISortAlgorithm {
@@ -43,14 +53,15 @@ public class Selectionsort implements ISortAlgorithm {
             lowestNumber = array.getValue(i);
             currentNumber = i;
             for (int j = i; j < array.arraySize(); j++) {
+                this.amountOfComparisons++;
                 if (array.getValue(j) < lowestNumber) {
                     lowestNumber = array.getValue(j);
                     currentNumber = j;
-                    this.amountOfComparisons++;
-                    this.loopRuns++;
                 }
+                this.loopRuns++;
             }
             if (lowestNumber < array.getValue(i)) {
+                this.amountOfComparisons++;
                 array.swap(i, currentNumber);
             }
         }
