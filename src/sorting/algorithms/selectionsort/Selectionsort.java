@@ -9,7 +9,10 @@ import sorting.SortArray;
  */
 
 public class Selectionsort implements ISortAlgorithm {
-    private int swaps = 0;
+    private int amountOfComparisons = 0;
+    private long memory = 0;
+    private long duration = 0;
+    private long loopRuns = 0;
 
 
     @Override
@@ -24,38 +27,48 @@ public class Selectionsort implements ISortAlgorithm {
 
     @Override
     public void runSort(SortArray array) {
+        long timeBefore = System.nanoTime();
         int minValue, minIndex;
-
+        Runtime rt = Runtime.getRuntime();
         for (int i = 0; i < array.arraySize(); i++) {
             minValue = array.getValue(i);
             minIndex = i;
+            this.loopRuns++;
             for (int j = i; j < array.arraySize(); j++) {
                 if (array.getValue(j) < minValue) {
                     minValue = array.getValue(j);
                     minIndex = j;
+                    this.amountOfComparisons++;
+                    this.loopRuns++;
                 }
             }
             if (minValue < array.getValue(i)) {
                 array.swap(i, minIndex);
-                swaps++;
             }
         }
-
+        this.memory = rt.totalMemory() - rt.freeMemory();
+        long timeAfter = System.nanoTime();
+        this.duration = timeAfter - timeBefore;
     }
 
     @Override
     public double getDuration() {
-        return 0;
+        return duration;
     }
 
     @Override
-    public int getAmountOfChanges() {
-        return swaps;
+    public int getAmountOfComparisons() {
+        return amountOfComparisons;
     }
 
     @Override
     public long getMemoryUsage() {
-        return 0;
+        return memory;
+    }
+
+    @Override
+    public long getLoopRuns() {
+        return loopRuns;
     }
 }
 
