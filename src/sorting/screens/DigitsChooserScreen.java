@@ -7,6 +7,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import sorting.MainApp;
@@ -15,21 +16,36 @@ import sorting.data.DataLoader;
 
 
 /**
+ * screen to select the digits you want to sort
+ *
  * @author Bastian Kappeler
  */
-public final class DitigsChooser extends Screen {
+public final class DigitsChooserScreen extends Screen {
 
   private final ArrayList<DigitRadioButton> checkBoxes;
   private final ArrayList<ISortAlgorithm> algorithm;
 
-  public DitigsChooser(ArrayList<ISortAlgorithm> algorithm, MainApp app) {
+  /**
+   * Creates the GUI screen
+   *
+   * @param algorithms List of algorithms to run for visualisation
+   * @param app        The main application
+   */
+  public DigitsChooserScreen(ArrayList<ISortAlgorithm> algorithms, MainApp app) {
     super(app);
-    this.algorithm = algorithm;
+    this.algorithm = algorithms;
     checkBoxes = new ArrayList<>();
     setUpGUI();
   }
 
-  private void addCheckBox(int digit, JPanel panel, ButtonGroup buttonGroup) {
+  /**
+   * Creates a radiobutton for the digit and sets it into the panel
+   *
+   * @param digit       the digit that has to be set to this checkBox
+   * @param panel       the panel where the radiobutton has to be set
+   * @param buttonGroup the buttongroup the radiobutton has to be set to
+   */
+  private void addRaioButton(int digit, JPanel panel, ButtonGroup buttonGroup) {
     JRadioButton button = new JRadioButton("", true);
     button.setAlignmentX(LEFT_ALIGNMENT);
     button.setBackground(BACKGROUND_COLOUR);
@@ -38,11 +54,19 @@ public final class DitigsChooser extends Screen {
     panel.add(button);
   }
 
+  /**
+   * initialises the Container
+   *
+   * @param p panel to be initialised
+   */
   private void initContainer(JPanel p) {
     p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
     p.setBackground(BACKGROUND_COLOUR);
   }
 
+  /**
+   * Sets up the GUI to choose the file to read the digits from
+   */
   public void setUpGUI() {
     JPanel digitContainer = new JPanel();
     JPanel optionsContainer = new JPanel();
@@ -60,15 +84,16 @@ public final class DitigsChooser extends Screen {
 
     digitContainer.setAlignmentX(CENTER_ALIGNMENT);
 
+    // Needed so you can only select one radiobutton
     ButtonGroup digitButtonGroup = new ButtonGroup();
 
-    // to use sorter, create a new sorter here
-    addCheckBox(10, digitContainer, digitButtonGroup);
-    addCheckBox(100, digitContainer, digitButtonGroup);
-    addCheckBox(1000, digitContainer, digitButtonGroup);
+    addRaioButton(10, digitContainer, digitButtonGroup);
+    addRaioButton(100, digitContainer, digitButtonGroup);
+    addRaioButton(1000, digitContainer, digitButtonGroup);
 
     JButton backButton = new JButton("Back");
-    backButton.addActionListener((ActionEvent e) -> app.pushScreen(new MainMenuScreen(app)));
+    backButton
+        .addActionListener((ActionEvent e) -> app.pushScreen(new AlgorithmChooserScreen(app)));
     backButton.setAlignmentX(CENTER_ALIGNMENT);
 
     JButton startButton = new JButton("Sort");
@@ -79,7 +104,7 @@ public final class DitigsChooser extends Screen {
         }
       }
       app.pushScreen(
-          new sortedOutputScreen(
+          new SortedOutputScreen(
               algorithm,
               app
           ));
@@ -93,18 +118,29 @@ public final class DitigsChooser extends Screen {
     outerContainer.add(Box.createRigidArea(new Dimension(5, 0)));
     outerContainer.add(digitContainer);
 
+    JLabel title = new JLabel("<html><h1>Select the amount of digits you want to sort</h1></html>");
+
     int gap = 15;
     add(Box.createRigidArea(new Dimension(0, gap)));
+    add(title);
+    add(Box.createRigidArea(new Dimension(0, gap)));
     add(outerContainer);
+    add(Box.createRigidArea(new Dimension(0, gap)));
     add(buttonContainer);
   }
 
+  /**
+   * sets every checkBox to unselected
+   */
   @Override
   public void onOpen() {
     checkBoxes.forEach(DigitRadioButton::unselect);
   }
 
-  private class DigitRadioButton {
+  /**
+   * Gets created for the radioButton so you can see, what digit was selected
+   */
+  private static class DigitRadioButton {
 
     private final int digit;
     private final JRadioButton button;

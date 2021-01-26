@@ -21,6 +21,11 @@ public class DataLoader {
 
   public static int amount = 0;
 
+  /**
+   * returns the digits of the file
+   *
+   * @return the specified values of the file
+   */
   public static int[] get() {
     if (amount == 10) {
       if (small == null) {
@@ -42,14 +47,15 @@ public class DataLoader {
     return large;
   }
 
-  private static void amount(int amount) {
-    DataLoader.amount = amount;
-  }
-
+  /**
+   * loads the data form the specified file and converts it to a int[]
+   *
+   * @param url the path to the file to load
+   * @return the data as int[]
+   */
   private static int[] loadData(String url) {
     String[] lines = null;
     try {
-      // File path from Repository Root
       lines = Files.readAllLines(new File(url).toPath()).toArray(new String[0]);
     } catch (IOException e) {
       e.printStackTrace();

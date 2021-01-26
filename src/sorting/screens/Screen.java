@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import sorting.MainApp;
 
 /**
+ * abstract class for the screens
+ *
  * @author Bastian Kappeler
  */
 public abstract class Screen extends JPanel {

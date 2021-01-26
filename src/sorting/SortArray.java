@@ -1,7 +1,6 @@
 package sorting;
 
 import java.util.Arrays;
-import javax.swing.JPanel;
 
 /**
  * Class with the array including the data for the sorting algorithms to use Contains methods for

@@ -26,7 +26,7 @@ public class BubbleSort implements ISortAlgorithm {
   public void runSort(SortArray array) {
     Runtime rt = Runtime.getRuntime();
 
-    double startTime = System.currentTimeMillis();
+    double startTime = System.nanoTime();
 
     int len = array.arraySize();
     for (int i = 0; i < len - 1; i++) {
@@ -37,10 +37,9 @@ public class BubbleSort implements ISortAlgorithm {
         }
         loopRun++;
       }
-      loopRun++;
     }
 
-    double endTime = System.currentTimeMillis();
+    double endTime = System.nanoTime();
 
     this.duration = endTime - startTime;
 

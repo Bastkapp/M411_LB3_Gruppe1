@@ -2,6 +2,7 @@ package sorting.algorithms;
 
 import sorting.algorithms.bubblesort.BubbleSort;
 import sorting.algorithms.gnomesort.GnomeSort;
+import sorting.algorithms.quicksort.QuickSort;
 import sorting.algorithms.selectionsort.Selectionsort;
 
 /**
@@ -11,14 +12,23 @@ import sorting.algorithms.selectionsort.Selectionsort;
  */
 public class AlgorithmManager {
 
+  /**
+   * contains every algorithm that is supposed to go to the GUI
+   */
   private static final ISortAlgorithm[] algorithms = new ISortAlgorithm[]{
 
       // Add algorithm that implements ISortAlgorithm here to include it to the GUI
       new BubbleSort(),
       new GnomeSort(),
-      new Selectionsort()
+      new Selectionsort(),
+      new QuickSort()
   };
 
+  /**
+   * returns the algorithms
+   *
+   * @return all algorithms
+   */
   public static ISortAlgorithm[] getAlgorithms() {
     return algorithms;
   }
