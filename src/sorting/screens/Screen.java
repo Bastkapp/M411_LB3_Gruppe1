@@ -3,15 +3,17 @@ package sorting.screens;
 import static sorting.MainApp.WIN_HEIGHT;
 import static sorting.MainApp.WIN_WIDTH;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import sorting.MainApp;
 
 /**
- * @author mhops
+ * @author Bastian Kappeler
  */
 public abstract class Screen extends JPanel {
 
+  protected static final Color BACKGROUND_COLOUR = null;
   protected MainApp app;
 
   public Screen(MainApp app) {
