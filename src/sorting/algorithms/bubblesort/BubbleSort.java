@@ -6,40 +6,45 @@ import sorting.SortArray;
 /**
  * Bubble sort implementation
  *
- * @author mhops
+ * @author Bastian Kappeler
  */
 public class BubbleSort implements ISortAlgorithm {
 
   private double duration;
-  private int changes = 0;
+  private int comparisons = 0;
+  private long memory = 0;
+  private long loopRun = 0;
 
   /**
-   * This method implements the bubble sort algorithm, see
-   * <a href="https://en.wikipedia.org/wiki/Bubble_sort">Bubble_sort</a> to understand more.
-   * Takes a SortArray object called array and sorts his elements according to the mathematical
-   * theory of the order "less than", see <a href="https://en.wikipedia.org/wiki/Order_theory">Order_theory</a>
-   * to understand more.
+   * This method implements the bubble sort algorithm
+   * Takes a SortArray object called array and sorts his elements as an int
    *
    * @param array the array to be sorted
    * @see SortArray
    */
   @Override
   public void runSort(SortArray array) {
+    Runtime rt = Runtime.getRuntime();
+
     double startTime = System.currentTimeMillis();
 
     int len = array.arraySize();
     for (int i = 0; i < len - 1; i++) {
       for (int j = 0; j < len - i - 1; j++) {
-        if (array.getValue(j) < array.getValue(j + 1)) {
+        comparisons++;
+        if (array.getValue(j) > array.getValue(j + 1)) {
           array.swap(j, j + 1);
-          changes++;
         }
+        loopRun++;
       }
+      loopRun++;
     }
 
     double endTime = System.currentTimeMillis();
 
     this.duration = endTime - startTime;
+
+    this.memory = rt.totalMemory() - rt.freeMemory();
 
   }
 
@@ -49,8 +54,18 @@ public class BubbleSort implements ISortAlgorithm {
   }
 
   @Override
-  public int getAmountOfChanges() {
-    return changes;
+  public int getAmountOfComparisons() {
+    return comparisons;
+  }
+
+  @Override
+  public long getMemoryUsage() {
+    return memory;
+  }
+
+  @Override
+  public long getLoopRuns() {
+    return loopRun;
   }
 
   @Override

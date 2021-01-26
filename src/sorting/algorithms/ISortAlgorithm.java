@@ -15,5 +15,9 @@ public interface ISortAlgorithm {
 
   public double getDuration();
 
-  public int getAmountOfChanges();
+  public int getAmountOfComparisons();
+
+  public long getMemoryUsage();
+
+  public long getLoopRuns();
 }
