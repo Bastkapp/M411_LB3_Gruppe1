@@ -36,14 +36,11 @@ public class Selectionsort implements ISortAlgorithm {
                 }
             }
             if (minValue < array.getValue(i)) {
-                array.swap(array.getValue(i), minIndex);
+                array.swap(i, minIndex);
                 swaps++;
             }
         }
 
-        for (int k = 0;  k < array.arraySize() -1; k++) {
-            System.out.println(array.getValue(k));
-        }
     }
 
     @Override
@@ -54,6 +51,11 @@ public class Selectionsort implements ISortAlgorithm {
     @Override
     public int getAmountOfChanges() {
         return swaps;
+    }
+
+    @Override
+    public long getMemoryUsage() {
+        return 0;
     }
 }
 
