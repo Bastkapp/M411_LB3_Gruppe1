@@ -5,6 +5,7 @@ import sorting.SortArray;
 
 /**
  * @Author: Marko Micanovic
+ * @Date: 21.01.2021
  * @Version: 1.0
  *
  * Hier habe ich den SelectionSort übernommen, welchen wir im Moodle am 14.01 behandelt haben.
