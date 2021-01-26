@@ -22,28 +22,27 @@ public class Selectionsort implements ISortAlgorithm {
 
     /**
      * Hier habe ich den SelectionSort übernommen, welchen wir im Moodle am 14.01 behandelt haben.
-     * Der Code wurde einfach so angepasst, dass es noch die Variablen für Zeit, Swaps und Anzahl Durchläufe hat.
+     * Der Code wurde einfach so angepasst, dass es noch die Variablen für Zeit, Speicherverbrauch und Anzahl Durchläufe hat.
      */
 
     @Override
     public void runSort(SortArray array) {
         long timeBefore = System.nanoTime();
-        int minValue, minIndex;
+        int lowestNumber, currentNumber;
         Runtime rt = Runtime.getRuntime();
         for (int i = 0; i < array.arraySize(); i++) {
-            minValue = array.getValue(i);
-            minIndex = i;
-            this.loopRuns++;
+            lowestNumber = array.getValue(i);
+            currentNumber = i;
             for (int j = i; j < array.arraySize(); j++) {
-                if (array.getValue(j) < minValue) {
-                    minValue = array.getValue(j);
-                    minIndex = j;
+                if (array.getValue(j) < lowestNumber) {
+                    lowestNumber = array.getValue(j);
+                    currentNumber = j;
                     this.amountOfComparisons++;
                     this.loopRuns++;
                 }
             }
-            if (minValue < array.getValue(i)) {
-                array.swap(i, minIndex);
+            if (lowestNumber < array.getValue(i)) {
+                array.swap(i, currentNumber);
             }
         }
         this.memory = rt.totalMemory() - rt.freeMemory();
