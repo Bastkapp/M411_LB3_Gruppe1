@@ -9,51 +9,41 @@ import sorting.SortArray;
  */
 
 public class Selectionsort implements ISortAlgorithm {
-
-    public static void main(String[] args) {
-        int[] list = {4, 9, 2, 5, 1};
-
-
-        printToSort(SelectionSort(list));
-    }
-
-
-
-    public static int[] SelectionSort(int[] list) {
-        int i = 0, j;
-        while (i != list.length) {
-            int index_of_smallest = i;
-            for (j = i; j < list.length; j++) {
-                if (list[j] < list[index_of_smallest]) {
-                    index_of_smallest = j;
-                }
-                int temp = list[i];
-                list[i] = list[index_of_smallest];
-                list[index_of_smallest] = temp;
-                i++;
-            }
-        }
-        return list;
-    }
-
-
-    public static void printToSort(int[] list) {
-        for (int i = 0;  i < list.length -1; i++) {
-            System.out.println(list[i]);
-        }
-        System.out.println(list[list.length -1]);
-    }
+    private int swaps = 0;
 
 
     @Override
     public String getName() {
-        String name = "SelectionSort";
-        return name;
+        return "SelectionSort";
     }
+
+    /**
+     * Hier habe ich den SelectionSort übernommen, welchen wir im Moodle am 14.01 behandelt haben.
+     * Der Code wurde einfach so angepasst, dass es noch die Variablen für Zeit, Swaps und Anzahl Durchläufe hat.
+     */
 
     @Override
     public void runSort(SortArray array) {
+        int minValue, minIndex;
 
+        for (int i = 0; i < array.arraySize(); i++) {
+            minValue = array.getValue(i);
+            minIndex = i;
+            for (int j = i; j < array.arraySize(); j++) {
+                if (array.getValue(j) < minValue) {
+                    minValue = array.getValue(j);
+                    minIndex = j;
+                }
+            }
+            if (minValue < array.getValue(i)) {
+                array.swap(array.getValue(i), minIndex);
+                swaps++;
+            }
+        }
+
+        for (int k = 0;  k < array.arraySize() -1; k++) {
+            System.out.println(array.getValue(k));
+        }
     }
 
     @Override
@@ -63,6 +53,7 @@ public class Selectionsort implements ISortAlgorithm {
 
     @Override
     public int getAmountOfChanges() {
-        return 0;
+        return swaps;
     }
 }
+
