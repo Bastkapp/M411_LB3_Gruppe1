@@ -1,6 +1,5 @@
 package sorting.screens;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -9,17 +8,15 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
-import sorting.algorithms.ISortAlgorithm;
 import sorting.MainApp;
-import sorting.algorithms.bubblesort.BubbleSort;
-
+import sorting.algorithms.AlgorithmManager;
+import sorting.algorithms.ISortAlgorithm;
 
 /**
- * @author Matthew Hopson
+ * @author Bastian Kappeler
  */
 public final class MainMenuScreen extends Screen {
 
-  private static final Color BACKGROUND_COLOUR = Color.DARK_GRAY;
   private final ArrayList<AlgorithmCheckBox> checkBoxes;
 
   public MainMenuScreen(MainApp app) {
@@ -29,18 +26,16 @@ public final class MainMenuScreen extends Screen {
   }
 
   private void addCheckBox(ISortAlgorithm algorithm, JPanel panel) {
-    JCheckBox box = new JCheckBox("", true);
-    box.setAlignmentX(LEFT_ALIGNMENT);
-    box.setBackground(BACKGROUND_COLOUR);
-    box.setForeground(Color.WHITE);
-    checkBoxes.add(new AlgorithmCheckBox(algorithm, box));
-    panel.add(box);
+    JCheckBox checkBox = new JCheckBox("", true);
+    checkBox.setAlignmentX(LEFT_ALIGNMENT);
+    checkBox.setBackground(BACKGROUND_COLOUR);
+    checkBoxes.add(new AlgorithmCheckBox(algorithm, checkBox));
+    panel.add(checkBox);
   }
 
   private void initContainer(JPanel p) {
     p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
     p.setBackground(BACKGROUND_COLOUR);
-    //p.setBorder(BorderFactory.createLineBorder(Color.WHITE));
   }
 
   public void setUpGUI() {
@@ -56,9 +51,11 @@ public final class MainMenuScreen extends Screen {
 
     sortAlgorithmContainer.setAlignmentX(CENTER_ALIGNMENT);
 
-    addCheckBox(new BubbleSort(), sortAlgorithmContainer);
+    for (ISortAlgorithm algorithm : AlgorithmManager.getAlgorithms()) {
+      addCheckBox(algorithm, sortAlgorithmContainer);
+    }
 
-    JButton startButton = new JButton("Begin Visual Sorter");
+    JButton startButton = new JButton("Choose Amount of Digits to sort");
     startButton.addActionListener((ActionEvent e) -> {
       ArrayList<ISortAlgorithm> algorithms = new ArrayList<>();
       for (AlgorithmCheckBox cb : checkBoxes) {
@@ -67,7 +64,7 @@ public final class MainMenuScreen extends Screen {
         }
       }
       app.pushScreen(
-          new SortingVisualiserScreen(
+          new DitigsChooser(
               algorithms,
               app
           ));
@@ -87,11 +84,7 @@ public final class MainMenuScreen extends Screen {
 
   @Override
   public void onOpen() {
-    checkBoxes.forEach((box) -> {
-      box.unselect();
-
-    });
-
+    checkBoxes.forEach(AlgorithmCheckBox::unselect);
   }
 
   private class AlgorithmCheckBox {

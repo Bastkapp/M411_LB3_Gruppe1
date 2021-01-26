@@ -9,20 +9,20 @@ import sorting.screens.Screen;
 /**
  * The main application point for controlling the program
  *
- * @author Matthew Hopson
+ * @author Bastian Kappeler
  */
 public class MainApp {
 
   private final JFrame window;
 
-  public static final int WIN_WIDTH = 1280;
-  public static final int WIN_HEIGHT = 720;
+  public static final int WIN_WIDTH = 500;
+  public static final int WIN_HEIGHT = 300;
 
   private final ArrayList<Screen> screens;
 
   public MainApp() {
     screens = new ArrayList<>();
-    window = new JFrame("Sorting Group 1");
+    window = new JFrame("Sorting by Group 1");
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setVisible(true);
   }
