@@ -23,7 +23,7 @@ public class GnomeSort implements ISortAlgorithm{
     public void runSort(SortArray array) {
         Runtime runtime = Runtime.getRuntime();
 
-        double startTime = System.currentTimeMillis();
+        double startTime = System.nanoTime();
 
         int index = 0;
         while (index < array.arraySize()) {
@@ -41,7 +41,7 @@ public class GnomeSort implements ISortAlgorithm{
             }
             loopRun++;
         }
-        double endTime = System.currentTimeMillis();
+        double endTime = System.nanoTime();
 
         this.duration = endTime - startTime;
 
