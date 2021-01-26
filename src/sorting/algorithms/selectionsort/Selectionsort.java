@@ -6,6 +6,18 @@ import sorting.SortArray;
 /**
  * @Author: Marko Micanovic
  * @Version: 1.0
+ *
+ * Hier habe ich den SelectionSort übernommen, welchen wir im Moodle am 14.01 behandelt haben.
+ * Der Code wurde einfach so angepasst, dass es noch die Variablen für Zeit, Speicherverbrauch und Anzahl Durchläufe hat.
+ *
+ * Ablauf:
+ * Der Algorithmus funktioniert so, dass er die erste Zahl als lowestNumber festlegt. Die Variable currentNumber geht jede
+ * Position im array durch und prüft, ob lowestNumber < currentNumber übereinstimmt. Falls das aber nicht übereinstimmt, wird
+ * lowestNumber das array gesetzt, bei welchem der Vergleich nicht übereingestimmt hat. Die Anzahl Vergleiche und Anzahl
+ * durchläufe wird hier hochgezählt. Wenn sich lowestNumber dann nicht mehr ändert und currentNumber die ganze Liste durch-
+ * gegangen ist, dann wird am schluss der Wert von der ersten Position mit dem kleinsten Wert vertauscht und die Länge des
+ * arrays verkürzt sich somit um 1 Eintrag, sodass die sortierten Werte nicht mehrmals überprüft werden.
+ *
  */
 
 public class Selectionsort implements ISortAlgorithm {
@@ -20,10 +32,7 @@ public class Selectionsort implements ISortAlgorithm {
         return "SelectionSort";
     }
 
-    /**
-     * Hier habe ich den SelectionSort übernommen, welchen wir im Moodle am 14.01 behandelt haben.
-     * Der Code wurde einfach so angepasst, dass es noch die Variablen für Zeit, Speicherverbrauch und Anzahl Durchläufe hat.
-     */
+
 
     @Override
     public void runSort(SortArray array) {
