@@ -15,6 +15,8 @@ public class QuickSort implements ISortAlgorithm {
   private long memory = 0;
   private long loopRun = 0;
 
+  private SortArray array;
+
   /**
    * finds the pivot point
    *
@@ -47,6 +49,7 @@ public class QuickSort implements ISortAlgorithm {
    * @see SortArray
    */
   private void quickSort(SortArray array, int lowIndex, int highIndex) {
+    if (!isSorted()) return;
     comparisons++;
     if (lowIndex < highIndex) {
       int pivotPoint = findPivotPoint(array, lowIndex, highIndex);
@@ -64,17 +67,38 @@ public class QuickSort implements ISortAlgorithm {
    */
   @Override
   public void runSort(SortArray array) {
+    this.array = array;
+
     Runtime runtime = Runtime.getRuntime();
 
+    runtime.gc();
+
+    long startMemory = runtime.totalMemory() - runtime.freeMemory();
     double startTime = System.nanoTime();
 
     quickSort(array, 0, array.arraySize() - 1);
 
     double endTime = System.nanoTime();
+    long endMemory = runtime.totalMemory() - runtime.freeMemory();
 
     this.duration = endTime - startTime;
+    
+    this.memory = endMemory - startMemory;
+  }
 
-    this.memory = runtime.totalMemory() - runtime.freeMemory();
+  /**
+   * Checks if the array is sorted and returns a boolean regarding the sorted state
+   *
+   * @return boolean if array is sorted
+   */
+  private boolean isSorted() {
+    for (int i = 0; i < array.arraySize() - 1; i++) {
+      comparisons++;
+      if (array.getValue(i) > array.getValue(i + 1)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   @Override
