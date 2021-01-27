@@ -2,6 +2,7 @@ package sorting.algorithms;
 
 import sorting.algorithms.bubblesort.BubbleSort;
 import sorting.algorithms.gnomesort.GnomeSort;
+import sorting.algorithms.insertionsort.InsertionSort;
 import sorting.algorithms.quicksort.QuickSort;
 import sorting.algorithms.selectionsort.Selectionsort;
 
@@ -21,7 +22,8 @@ public class AlgorithmManager {
       new BubbleSort(),
       new GnomeSort(),
       new Selectionsort(),
-      new QuickSort()
+      new QuickSort(),
+      new InsertionSort()
   };
 
   /**
