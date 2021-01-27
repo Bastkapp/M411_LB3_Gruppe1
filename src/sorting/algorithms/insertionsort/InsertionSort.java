@@ -34,12 +34,13 @@ public class InsertionSort implements ISortAlgorithm {
         double startTime = System.nanoTime();
 
         int k = array.arraySize();
-        for (int i = 0; i < array.getValue.length; i++) {
-            for (int j = array.getValue.length-1; j > 0; j--) {
-                if (array.getValue[j-1] > array.getValue[j]) {
-                    k = array.getValue[j];
-                    array.getValue[j] = intArr[j - 1];
-                    array.getValue[j - 1] = k;
+        for (int i = 0; i < k; i++) {
+            for (int j = k-1; j > 0; j--) {
+                comparison++;
+                if (array.getValue(j-1) > array.getValue(j)) {
+                    k = array.getValue(j);
+                    array.getValue(j) = array.getValue(j - 1);
+                    array.getValue(j - 1) = k;
                 }
             }
         }
