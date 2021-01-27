@@ -20,7 +20,7 @@ import sorting.SortArray;
  * Die Schleifen haben alle drei Zenarien umgesetzt: was wenn die Zahlen gleich gross sind, was wenn die linke Zahl kleiner ist als die rechte und was wenn die linke Zahl grösser ist als die rechte.
  * Wenn die Reihenfolge falsch ist geht der "Gnome" nach links bis der Topf an der richtigen Stelle ist.
  *
- * Der Gnome Sort gehört zu der Kathegorie der stabilen Algorithmen.
+ * Der Gnome Sort gehört zu der Kathegorie der stabilen Algorithmen. Das heiss, dass die Reihenfolge der Datensätze mit den Sortierschlüsseln gleich sind.
  *
  * Best-case: O(n)
  * Worst-case: O(n^2)
