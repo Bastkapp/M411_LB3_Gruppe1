@@ -3,6 +3,7 @@ package sorting.data;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 /**
  * This class loads the digits it gets asked for
@@ -61,17 +62,22 @@ public class DataLoader {
       e.printStackTrace();
     }
 
-    assert lines != null;
-    int[] data = new int[lines.length];
+    ArrayList<Integer> data = new ArrayList<>();
 
-    for (int i = 0; i < lines.length; i++) {
-      String line = lines[i].replaceAll("\\D+", "");
+    for (String line : lines != null ? lines : new String[0]) {
+      line = line.replaceAll("\\D+", "");
       if (!line.equals("")) {
-        data[i] = Integer.parseInt(line);
+        data.add(Integer.parseInt(line));
       }
     }
 
-    return data;
+    int[] output = new int[data.size()];
+    for (int i=0; i < output.length; i++)
+    {
+      output[i] = data.get(i);
+    }
+
+    return output;
   }
 
 
