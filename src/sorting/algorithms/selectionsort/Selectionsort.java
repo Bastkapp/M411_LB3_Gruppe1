@@ -23,6 +23,8 @@ import sorting.SortArray;
  * Best-, Worst- und Average-Case:
  * Der Selectionsort geht immer die ganze Liste durch, weshalb Best-, Worst- und Average-Case auch alle den gleichen Wert
  * haben. Der Sort geht immer eine fixe Anzahl vergleiche durch, weshalb sich die Fälle von der Zeit her nicht unterscheiden.
+ * Auch wenn die Liste schon ganz sortiert wäre, würde der Sort durch das ganze Array gehen. Also ist die Zeitkomplexität für
+ * alle 3 Fälle O(n^2).
  *
  *
  * Stabilität:
