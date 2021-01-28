@@ -25,6 +25,9 @@ import sorting.SortArray;
  * Best-case: O(n)
  * Worst-case: O(n^2)
  * Average-case: O(n^2)
+ * Da der Gnome Sort nicht immer die ganze Liste durch geht sonder einfach nur bis er die die richtige Stelle gefunden hat, wo die Zahl hin kommt,
+ * ist der Best-case anders als der Average und Worst-case da, wenn man Glück hat muss der "Gnome" nur wenige stellen durch die Liste gehen.
+ *
  */
 
 public class GnomeSort implements ISortAlgorithm{
