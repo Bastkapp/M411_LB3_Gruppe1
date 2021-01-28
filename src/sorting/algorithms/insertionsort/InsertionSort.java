@@ -9,8 +9,7 @@ import sorting.SortArray;
  * @version 1.0
  *
  * Der Begriff Selection-Sort, bezeichnet einen naiven Sortieralgorithmus, der in-place arbeitet und in seiner Grundform instabil ist,
- * wobei er sich auch stabil implementieren lässt. Die Komplexität von SelectionSort ist, in der Landau-Notation ausgedrückt, O(n2).
- *
+ * wobei er sich auch stabil implementieren lässt. Die Komplexität von SelectionSort ist folgende:
  * Best Case: O(n²)
  * Worst Case: O(n²)
  * Average Case: O(n²)
@@ -23,9 +22,9 @@ public class InsertionSort implements ISortAlgorithm {
     private long memory = 0;
 
     /**
-    *@param array the array to be sorted
-    *@see SortArray
-    */
+     *@param array the array to be sorted
+     *@see SortArray
+     */
 
     @Override
     public void runSort(SortArray array) {
@@ -35,13 +34,12 @@ public class InsertionSort implements ISortAlgorithm {
 
         int k = array.arraySize();
         for (int i = 0; i < k; i++) {
-            for (int j = k-1; j > 0; j--) {
+            for (int j = i; j > 0; j--) {
                 comparison++;
                 if (array.getValue(j-1) > array.getValue(j)) {
-                    k = array.getValue(j);
-                    array.getValue(j) = array.getValue(j - 1);
-                    array.getValue(j - 1) = k;
+                    array.swap(j, j-1);
                 }
+                loopRun++;
             }
         }
 
@@ -77,4 +75,3 @@ public class InsertionSort implements ISortAlgorithm {
         return loopRun;
     }
 }
-
