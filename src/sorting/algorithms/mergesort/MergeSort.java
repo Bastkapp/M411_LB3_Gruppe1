@@ -3,7 +3,12 @@ import sorting.algorithms.ISortAlgorithm;
 import sorting.SortArray;
 /**
  * @author noé
- * @version 0.8
+ * @version 1.0
+ * @date 28.01.2021
+ *
+ * The Merge Sort algorithm is a sorting algorithm, that takes e.g. an array and recursively splits it into two half-arrays.
+ * This happens until every number is by itself. After every number has been separated they are 'merged' back together in order.
+ * Simplistically said, the (here) array deconstructs itself and then slowly reconstructs until all of the numbers are in their places.
  */
 public class MergeSort implements ISortAlgorithm {
   private double duration;
@@ -22,7 +27,7 @@ public class MergeSort implements ISortAlgorithm {
     Runtime rt = Runtime.getRuntime();
     double startTime = System.nanoTime();
     int len = array.arraySize();
-    /* Opens up Sort Method */
+    // Opens the sort method, starts the sorting algorithm
     sort(array, 0, len - 1);
     double endTime = System.nanoTime();
     this.duration = endTime - startTime;
@@ -31,20 +36,18 @@ public class MergeSort implements ISortAlgorithm {
   /**
    *
    * @param array
-   * @param l
-   * @param r
+   * @param left
+   * @param right
+   * Function that sorts the array
    */
-  // Main function that sorts arr[l..r] using
-  // merge()
-  public void sort(SortArray array, int l, int r) {
-    if (l < r) {
-      // Find the middle point
-      int m = (l + r) / 2;
-      // Sort first and second halves
-      sort(array, l, m);
-      sort(array, m + 1, r);
-      // Merge the sorted halves
-      merge(array, l, m, r);
+  public void sort(SortArray array, int left, int right) {
+    if (left < right) {
+      int middle = (left + right) / 2; // Find the middle point of the array, gets automatically rounded due to its data type (int)
+      loopRun++; // Counts up the amount of iterations
+      /* At this point, the recursive element gets implemented to keep on splitting the array  */
+      sort(array, left, middle); // Sorts the left side of the array
+      sort(array, middle + 1, right); // Sorts the right side of the array
+      merge(array, left, middle, right); // Merge the sorted halves
     }
   }
   /**
@@ -58,23 +61,22 @@ public class MergeSort implements ISortAlgorithm {
     // Find sizes of two sub-arrays to be merged
     int leftSize = mid - left + 1;
     int rightSize = right - mid;
-    /* Create temporary arrays */
+    // Create the two temporary half-arrays
     int leftArray[] = new int[leftSize];
     int rightArray[] = new int[rightSize];
-    /* Fills the left array */
+    // Fills the left array
     for (int i = 0; i < leftSize; ++i) {
       leftArray[i] = array.getValue(left + i);
     }
-    /* Fills the right array */
+    // Fills the right array
     for (int j = 0; j < rightSize; ++j) {
       rightArray[j] = array.getValue(mid + 1 + j);
     }
-    /* Merge the temp arrays */
-    // Initial indexes of first and second sub-arrays
+    // Starting to merge the sub-arrays
     int i = 0, j = 0;
-    // Initial index of merged subarray
     int k = left;
     while (i < leftSize && j < rightSize) {
+      comparisons++; // Adds the comparisons for both left and right side
       if (leftArray[i] <= rightArray[j]) {
         array.setValue(k, leftArray[i]);
         i++;
@@ -84,13 +86,13 @@ public class MergeSort implements ISortAlgorithm {
       }
       k++;
     }
-    /* Copy remaining elements of left Array if any */
+    // Copies the remaining elements of the left array
     while (i < leftSize) {
       array.setValue(k, leftArray[i]);
       i++;
       k++;
     }
-    /* Copy remaining elements of right Array if any */
+    // Copies the remaining elements of the right array
     while (j < rightSize) {
       array.setValue(k, rightArray[j]);
       j++;
