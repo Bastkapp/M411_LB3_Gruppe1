@@ -1,7 +1,7 @@
 package sorting.algorithms.selectionsort;
 
-import sorting.algorithms.ISortAlgorithm;
 import sorting.SortArray;
+import sorting.algorithms.ISortAlgorithm;
 
 /**
  * @Author: Marko Micanovic
@@ -72,6 +72,7 @@ public class Selectionsort implements ISortAlgorithm {
         long timeAfter = System.nanoTime();
         this.duration = timeAfter - timeBefore;
     }
+
 
     @Override
     public double getDuration() {
